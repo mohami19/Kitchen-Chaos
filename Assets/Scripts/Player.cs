@@ -1,8 +1,16 @@
-using UnityEditor;
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
+
+    public EventHandler<OnSelectedCounterChangeEventArgs> OnSelectedCounterChange;
+    public class OnSelectedCounterChangeEventArgs : EventArgs
+    {
+        public ClearCounter selectedCounter;
+    }
+
     [SerializeField] private float movespeed = 6f;
     [SerializeField] private float rotation = 10f;
     [SerializeField] private GameInput gameInput;
@@ -10,6 +18,32 @@ public class Player : MonoBehaviour
 
     private bool isWalking;
     private Vector3 lastInterctionDir;
+    private ClearCounter selectedCounter;
+
+    public void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("More than one Player instance in the scene");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        gameInput.OnInteractAction += GameInput_OnInteractAction;
+    }
+
+    private void GameInput_OnInteractAction(object sender, EventArgs e)
+    {
+        if (selectedCounter != null)
+        {
+            selectedCounter.Ineract();
+        }
+    }
+
     private void Update()
     {
         HandleMovement();
@@ -39,8 +73,19 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
-                clearCounter.Ineract();
+                if (clearCounter != selectedCounter)
+                {
+                    SetSelectedCounter(clearCounter);
+                }
             }
+            else
+            {
+                SetSelectedCounter(null);
+            }
+        }
+        else
+        {
+            SetSelectedCounter(null);
         }
     }
 
@@ -87,5 +132,14 @@ public class Player : MonoBehaviour
         isWalking = moveDir != Vector3.zero;
 
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotation);
+    }
+
+    public void SetSelectedCounter(ClearCounter selectedCounter)
+    {
+        this.selectedCounter = selectedCounter;
+        OnSelectedCounterChange?.Invoke(this, new OnSelectedCounterChangeEventArgs
+        {
+            selectedCounter = selectedCounter
+        });
     }
 }
