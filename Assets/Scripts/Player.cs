@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float movespeed = 6f;
     [SerializeField] private float rotation = 10f;
+    private bool isWalking;
     private void Update()
     {
         Vector2 inputVector = new();
@@ -27,8 +26,17 @@ public class Player : MonoBehaviour
         }
 
         inputVector = inputVector.normalized;
+
         Vector3 moveDir = new(inputVector.x, 0f, inputVector.y);
         transform.position += movespeed * Time.deltaTime * moveDir;
-        transform.forward = Vector3.Slerp(transform.forward,moveDir, Time.deltaTime * rotation);
+
+        isWalking = moveDir != Vector3.zero;
+
+        transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotation);
+    }
+
+    public bool IsWalking()
+    {
+        return isWalking;
     }
 }
