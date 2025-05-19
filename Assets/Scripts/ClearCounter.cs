@@ -6,7 +6,27 @@ public class ClearCounter : BaseCounter
 
     public override void Ineract(Player player)
     {
-        Debug.Log("ClearCounter Ineract");
+        if (!HasKitchenObject())
+        {
+            if (player.HasKitchenObject())
+            {
+                player.GetKitchenObject().SetKitchenObjectParent(this);
+            }
+            else
+            {
+            }
+        }
+        else
+        {
+            if (player.HasKitchenObject())
+            {
+
+            }
+            else
+            {
+                GetKitchenObject().SetKitchenObjectParent(player);
+            }
+        }
     }
 
 
