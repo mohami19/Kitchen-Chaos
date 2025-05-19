@@ -11,6 +11,11 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
         Debug.Log("BaseCounter Ineract");
     }
 
+    public virtual void IneractAlternate(Player player)
+    {
+        Debug.Log("BaseCounter IneractAlternate");
+    }
+
     public Transform GetKitchenObjectFollowTransform()
     {
         return counterTopPoint;
