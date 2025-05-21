@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CuttingCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 4005500754324770526, guid: 467ebb052ab04874790567de6a424a06,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -111,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterTopPoint: {fileID: 2836350680028642233}
+  cutKitchenObject: {fileID: 0}
 --- !u!1001 &3636181334419179145
 PrefabInstance:
   m_ObjectHideFlags: 0

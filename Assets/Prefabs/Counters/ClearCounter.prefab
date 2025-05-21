@@ -203,6 +203,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 4005500754324770526, guid: 467ebb052ab04874790567de6a424a06,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -238,10 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54acbbbd918efcb4bb58ae927992797a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObjectSO: {fileID: 11400000, guid: 4f6b00074604e9641bc499b66d6b9e92, type: 2}
   counterTopPoint: {fileID: 6836240954318681464}
-  secondClearCounter: {fileID: 0}
-  testing: 0
+  kitchenObjectSO: {fileID: 11400000, guid: 4f6b00074604e9641bc499b66d6b9e92, type: 2}
 --- !u!4 &6836240954318681464 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4005500754324770526, guid: 467ebb052ab04874790567de6a424a06,
