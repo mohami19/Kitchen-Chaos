@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PlateKitchenObject : KitchenObject
 {
+    public event EventHandler<OnIngredienAddedEventArgs> OnIngredientAdded;
+    public class OnIngredienAddedEventArgs : EventArgs
+    {
+        public KitchenObjectSO kitchenObjectSO;
+    }
+
+
     [SerializeField] private List<KitchenObjectSO> validKitchenObjectSOList;
     private List<KitchenObjectSO> kitchenObjectSOList;
     private void Awake()
@@ -25,6 +32,11 @@ public class PlateKitchenObject : KitchenObject
         else
         {
             kitchenObjectSOList.Add(kitchenObjectSO);
+
+            OnIngredientAdded?.Invoke(this, new OnIngredienAddedEventArgs
+            {
+                kitchenObjectSO = kitchenObjectSO
+            });
             return true;
         }
 
