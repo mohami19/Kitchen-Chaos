@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CuttingCounter : BaseCounter , IHasProgress
+public class CuttingCounter : BaseCounter, IHasProgress
 {
 
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
@@ -21,7 +21,8 @@ public class CuttingCounter : BaseCounter , IHasProgress
                     player.GetKitchenObject().SetKitchenObjectParent(this);
                     cuttingProgress = 0;
 
-                    CutttingRecipeSO cuttingRecipeSO = GettingCuttingRecipeSOWithInput(player.GetKitchenObject().GetKitchenObjectSO());
+                    CutttingRecipeSO cuttingRecipeSO =
+                                GettingCuttingRecipeSOWithInput(player.GetKitchenObject().GetKitchenObjectSO());
 
                     OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                     {
@@ -40,7 +41,13 @@ public class CuttingCounter : BaseCounter , IHasProgress
         {
             if (player.HasKitchenObject())
             {
-
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+                {
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+                    {
+                        GetKitchenObject().DestroySelf();
+                    }
+                }
             }
             else
             {
