@@ -2,6 +2,17 @@ using UnityEngine;
 
 public class DeliveryCounter : BaseCounter
 {
+    public static DeliveryCounter Instance { get; private set; }
+    private void Awake()
+    {
+        Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError("More than one DeliveryCounter in the scene!");
+            Destroy(gameObject);
+            return;
+        }
+    }
     public override void Interact(Player player)
     {
         if (player.HasKitchenObject())
