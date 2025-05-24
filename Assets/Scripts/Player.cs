@@ -52,7 +52,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     {
         if (selectedCounter != null)
         {
-            selectedCounter.Ineract(this);
+            selectedCounter.Interact(this);
         }
     }
 

@@ -7,7 +7,7 @@ public class ContainerCounter : BaseCounter
 
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
-    public override void Ineract(Player player)
+    public override void Interact(Player player)
     {
         if (!player.HasKitchenObject())
         {

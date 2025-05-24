@@ -10,7 +10,7 @@ public class CuttingCounter : BaseCounter, IHasProgress
     [SerializeField] private CutttingRecipeSO[] cuttingRecipeSOArray;
     private int cuttingProgress;
 
-    public override void Ineract(Player player)
+    public override void Interact(Player player)
     {
         if (!HasKitchenObject())
         {

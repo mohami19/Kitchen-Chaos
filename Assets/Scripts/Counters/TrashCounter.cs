@@ -1,6 +1,6 @@
 public class TrashCounter : BaseCounter
 {
-    public override void Ineract(Player player)
+    public override void Interact(Player player)
     {
         if (player.HasKitchenObject())
         {
