@@ -10,24 +10,24 @@ public class GameInput : MonoBehaviour
     {
         playerInputActions = new();
         playerInputActions.Player.Enable();
-        playerInputActions.Player.Interact.performed += Intercat_performed;
-        playerInputActions.Player.InteractAlternate.performed += IntercatAlternate_performed;
+        playerInputActions.Player.Interact.performed += Interact_performed;
+        playerInputActions.Player.InteractAlternate.performed += InteracttAlternate_performed;
 
     }
 
-    private void Intercat_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnInteractAction?.Invoke(this, EventArgs.Empty);
     }
 
-    private void IntercatAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void InteracttAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnInteractAlternateAction?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 GetMovementVectorNormalized()
     {
-        Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>(); ;
+        Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
 
         inputVector = inputVector.normalized;
 
