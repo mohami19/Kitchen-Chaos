@@ -126,12 +126,6 @@ public class StoveCounter : BaseCounter, IHasProgress
                         progressNormalized = fryingTimer / fryingRecipeSO.fryingTimerMax
                     });
                 }
-                else
-                {
-                }
-            }
-            else
-            {
             }
         }
         else
@@ -221,5 +215,10 @@ public class StoveCounter : BaseCounter, IHasProgress
             }
         }
         return null;
+    }
+
+    public bool IsFried()
+    {
+        return state == State.Fried;
     }
 }

@@ -13,6 +13,7 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnInteractAction;
     public event EventHandler OnInteractAlternateAction;
     public event EventHandler OnPauseAction;
+    public event EventHandler OnBindingRebind;
 
     public enum Binding
     {
@@ -107,11 +108,14 @@ public class GameInput : MonoBehaviour
             case Binding.Pause:
                 return playerInputActions.Player.Pause.bindings[0].ToDisplayString();
             case Binding.Gamepad_Interact:
-                return playerInputActions.Player.Interact.bindings[1].ToDisplayString(InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
+                return playerInputActions.Player.Interact.bindings[1]
+                        .ToDisplayString(InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
             case Binding.Gamepad_InteractAlternate:
-                return playerInputActions.Player.InteractAlternate.bindings[1].ToDisplayString(InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
+                return playerInputActions.Player.InteractAlternate.bindings[1]
+                        .ToDisplayString(InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
             case Binding.Gamepad_Pause:
-                return playerInputActions.Player.Pause.bindings[1].ToDisplayString(InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
+                return playerInputActions.Player.Pause.bindings[1]
+                        .ToDisplayString(InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
             default:
                 return "";
         }
@@ -179,6 +183,8 @@ public class GameInput : MonoBehaviour
 
             PlayerPrefs.SetString(PLAYER_PREFS_BINDING, playerInputActions.SaveBindingOverridesAsJson());
             PlayerPrefs.Save();
+
+            OnBindingRebind?.Invoke(this, EventArgs.Empty);
         }).Start();
     }
 

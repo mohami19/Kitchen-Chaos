@@ -16,15 +16,9 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
 
     private KitchenObject kitchenObject;
 
-    public virtual void Interact(Player player)
-    {
-        Debug.Log("BaseCounter Ineract");
-    }
+    public virtual void Interact(Player player) { }
 
-    public virtual void IneractAlternate(Player player)
-    {
-        // Debug.Log("BaseCounter IneractAlternate");
-    }
+    public virtual void IneractAlternate(Player player) { }
 
     public Transform GetKitchenObjectFollowTransform()
     {

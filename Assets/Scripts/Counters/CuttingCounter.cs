@@ -36,12 +36,6 @@ public class CuttingCounter : BaseCounter, IHasProgress
                         progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
                     });
                 }
-                else
-                {
-                }
-            }
-            else
-            {
             }
         }
         else
