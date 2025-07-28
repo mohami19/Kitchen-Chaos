@@ -21,18 +21,13 @@ public class KitchenGameManager : MonoBehaviour
     private State state;
     private float countDownToStartTimer = 3f;
     private float gamePlayingTimer;
-    private float gamePlayingTimerMax = 90f;
+    private float gamePlayingTimerMax = 300f;
     private bool isGamePaused = false;
 
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Debug.LogError("More than one KitchenGameManager in the scene!");
-            Destroy(gameObject);
-            return;
-        }
         Instance = this;
+
         state = State.WaitingForStart;
     }
 
@@ -40,6 +35,10 @@ public class KitchenGameManager : MonoBehaviour
     {
         GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
         GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+
+        // Debug Trigger for starting game automaticly
+        state = State.CountDownToStart;
+        OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)

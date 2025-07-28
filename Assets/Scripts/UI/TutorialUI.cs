@@ -15,7 +15,7 @@ public class TutorialUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI keyGamepadPauseText;
 
 
-    private void Start()
+    private void Awake()
     {
         GameInput.Instance.OnBindingRebind += GameInput_OnBindingRebind;
 
